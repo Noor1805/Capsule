@@ -52,9 +52,9 @@ This is a visually immersive React project that showcases scroll-triggered anima
 
 - Each letter in the capsule headings animates in with a fade + slide effect using `gsap.to()` and `stagger`.
 
-### ⏳ Custom Loader (Optional)
+### ⏳ Custom Loader 
 
-> You can add a `Loader.jsx` using GSAP or basic CSS animation to create a preloading screen before showing the main UI.
+- You can add a `Loader.jsx` using GSAP or basic CSS animation to create a preloading screen before showing the main UI.
 
 ---
 
