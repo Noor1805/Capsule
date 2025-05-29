@@ -27,7 +27,7 @@ This is a visually immersive React project that showcases scroll-triggered anima
 
 ## 📸 Live Preview
 
-👉 [Add your deployed link here — GitHub Pages / Vercel / Netlify]
+👉 https://noor1805.github.io/Capsule/
 
 ---
 
