@@ -18,16 +18,13 @@ const MarqueeLoop = () => {
   const [revealContent, setRevealContent] = useState(false);
 
   useEffect(() => {
-    
     const container = marqueeContainerRef.current;
     const content = marqueeContentRef.current;
     const totalWidth = content.offsetWidth;
 
-    
     const clone = content.cloneNode(true);
     container.appendChild(clone);
 
-   
     gsap.set(container, { x: 0 });
     gsap.to(container, {
       x: `-${totalWidth}px`,
@@ -36,14 +33,12 @@ const MarqueeLoop = () => {
       repeat: -1,
     });
 
-    
     const letters1 = innerTextRef1.current?.querySelectorAll("span");
     const letters2 = innerTextRef2.current?.querySelectorAll("span");
 
     if (letters1) gsap.set(letters1, { opacity: 0, x: -30 });
     if (letters2) gsap.set(letters2, { opacity: 0, x: -30 });
 
-    
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: marqueeSectionRef.current,
@@ -64,6 +59,8 @@ const MarqueeLoop = () => {
       duration: 7,
       ease: "power2.out",
       onUpdate: () => {
+        if (!imageContainerRef1.current) return; // Guard check
+
         const rect = imageContainerRef1.current.getBoundingClientRect();
         if (rect.height >= window.innerHeight * 0.98) {
           setRevealContent(true);
@@ -114,6 +111,8 @@ const MarqueeLoop = () => {
         duration: 7,
         ease: "power2.inOut",
         onUpdate: () => {
+          if (!imageContainerRef2.current) return; // Guard check
+
           const rect2 = imageContainerRef2.current.getBoundingClientRect();
           if (rect2.top < window.innerHeight * 0.7) {
             if (letters2) {
@@ -128,8 +127,8 @@ const MarqueeLoop = () => {
           }
         },
       },
-      "<" 
-    )
+      "<"
+    );
     return () => {
       container.removeChild(clone);
       ScrollTrigger.getAll().forEach((st) => st.kill());
@@ -143,7 +142,6 @@ const MarqueeLoop = () => {
       className="relative w-full h-[165vh] overflow-hidden"
       style={{ userSelect: "none" }}
     >
-      
       <div
         className="absolute top-1/4 left-0 w-full overflow-hidden -translate-y-1/2 z-[-1]"
         style={{ pointerEvents: "none" }}
@@ -168,7 +166,6 @@ const MarqueeLoop = () => {
         </div>
       </div>
 
-      
       <div
         ref={imageContainerRef1}
         className="absolute top-[7rem] left-[23rem] w-[44rem] h-[20rem] rounded-[4rem] overflow-hidden z-20 pointer-events-none"
@@ -215,7 +212,6 @@ const MarqueeLoop = () => {
         </div>
       </div>
 
-      
       <div
         ref={imageContainerRef2}
         className="absolute top-[6rem] left-1/2 -translate-x-1/2 w-[44rem] h-[20rem] rounded-[4rem] overflow-hidden z-10 pointer-events-none"
@@ -261,7 +257,6 @@ const MarqueeLoop = () => {
         </div>
       </div>
 
-      
       <div className="flex flex-col gap-9 text-center justify-center items-center text-white relative mt-[53rem]">
         <p className="text-3xl text-amber-700">Closer than you think</p>
         <h1 className="text-7xl">
