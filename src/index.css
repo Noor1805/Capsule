@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import 'remixicon/fonts/remixicon.css';
+
+body {
+  background-color: rgb(20, 20, 20);
+  color: rgb(243, 248, 198);
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+body {
+  font-family: 'Host Grotesk', sans-serif;
+}
+html, body {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+}
+.mask-reveal {
+  clip-path: inset(0 100% 0 0); /* fully hidden from right */
+  display: inline-block;
+}
