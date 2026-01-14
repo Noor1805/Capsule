@@ -129,4 +129,4 @@ Error generating stack: `+l.message+`
           color: white;
           transition: color 0.5s ease, opacity 0.5s ease;
         }
-      `})]})};function Wv(){const[m,n]=zl.useState(!0),[f,i]=zl.useState(null);return zl.useEffect(()=>{Cy(()=>import("./Hero-DzXJbpt8.js"),[]).then(s=>{i(()=>s.default)});const c=setTimeout(()=>{n(!1)},3500);return()=>clearTimeout(c)},[]),nl.jsx("div",{className:"app-wrapper",children:m||!f?nl.jsx(kv,{}):nl.jsx(f,{})})}Ry.createRoot(document.getElementById("root")).render(nl.jsx(zl.StrictMode,{children:nl.jsx(Wv,{})}));export{P_ as g,nl as j,zl as r};
+      `})]})};function Wv(){const[m,n]=zl.useState(!0),[f,i]=zl.useState(null);return zl.useEffect(()=>{Cy(()=>import("./Hero-BjYtVQOE.js"),[]).then(s=>{i(()=>s.default)});const c=setTimeout(()=>{n(!1)},3500);return()=>clearTimeout(c)},[]),nl.jsx("div",{className:"app-wrapper",children:m||!f?nl.jsx(kv,{}):nl.jsx(f,{})})}Ry.createRoot(document.getElementById("root")).render(nl.jsx(zl.StrictMode,{children:nl.jsx(Wv,{})}));export{P_ as g,nl as j,zl as r};
