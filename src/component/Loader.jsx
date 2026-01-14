@@ -21,8 +21,10 @@ const Loader = ({ onComplete }) => {
 
         const tl = gsap.timeline({
           onComplete: () => {
-            overlayRef.current.style.display = "none";
-            onComplete?.(); 
+            if (overlayRef.current) {
+              overlayRef.current.style.display = "none";
+            }
+            onComplete?.();
           },
         });
 
@@ -31,7 +33,7 @@ const Loader = ({ onComplete }) => {
           duration: 2,
           ease: "power2.inOut",
           onStart: () => {
-            textRef.current.style.color = "#000"; 
+            textRef.current.style.color = "#000";
           },
         });
 
@@ -152,3 +154,4 @@ const Loader = ({ onComplete }) => {
 };
 
 export default Loader;
+

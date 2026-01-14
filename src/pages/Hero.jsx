@@ -29,11 +29,8 @@ function Hero() {
       },
     });
 
-    
-
-   
     const el = chooseTextRef.current;
-    if (!el) return; 
+    if (!el) return;
 
     const originalText = el.innerText;
     el.innerText = "";
@@ -68,7 +65,6 @@ function Hero() {
       return { letterSpan, mask };
     });
 
-    
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: el,
@@ -80,7 +76,7 @@ function Hero() {
     tl.to(
       spanElements.map((item) => item.mask),
       {
-        xPercent: -100, 
+        xPercent: -100,
         duration: 0.5,
         ease: "power2.out",
         stagger: 0.02,
@@ -88,9 +84,9 @@ function Hero() {
       0
     ).fromTo(
       spanElements.map((item) => item.letterSpan),
-      { xPercent: 20 }, 
+      { xPercent: 20 },
       {
-        xPercent: 0, 
+        xPercent: 0,
         duration: 1,
         ease: "power2.out",
         stagger: 0.05,
@@ -100,8 +96,9 @@ function Hero() {
   }, []);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
     gsap.to(bgRef.current, {
-      scale: 1.4,
+      scale: isMobile ? 1.15 : 1.4,
       ease: "none",
       scrollTrigger: {
         trigger: bgRef.current,
@@ -113,112 +110,114 @@ function Hero() {
   }, []);
 
   useEffect(() => {
-      
-      gsap.to(overlayRef.current, {
-        clipPath: "inset(100% 0% 0% 0%)", 
-        ease: "none",
-        scrollTrigger: {
-          trigger: overlayRef.current,
-          start: "top bottom", 
-          end: "bottom top", 
-          scrub: true,
-        },
-      });
-    }, []);
+    gsap.to(overlayRef.current, {
+      clipPath: "inset(100% 0% 0% 0%)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: overlayRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  }, []);
 
   return (
     <>
-      <section className="relative top-[5px] h-screen w-[98vw] overflow-hidden rounded-[4rem] left-[0.5rem] ">
-        <div
+      <section className="relative top-[5px] h-[65vh] sm:h-screen w-full px-2 sm:px-4 overflow-hidden rounded-[2rem] sm:rounded-[4rem]">
+        <img
           ref={bgRef}
-          className="absolute inset-0 z-0 will-change-transform rounded-lg"
+          src={bg}
+          alt="Hero background"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-center will-change-transform rounded-[2rem] sm:rounded-[4rem]"
           style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
             transformOrigin: "center center",
           }}
         />
 
-        <div className="relative z-10 text-amber-50 h-screen">
-          <h1 className="text-[12.3rem] tracking-tight absolute top-[-2rem] mx-[1rem] font-semibold">
-            Capsules<span className="text-[4rem]">®</span>
+        <div className="relative z-10 text-amber-50 h-full flex flex-col justify-between p-6 sm:p-10">
+          <h1 className="text-[18vw] sm:text-[12.3rem] tracking-tight leading-none font-semibold mt-4 sm:mt-0">
+            Capsules<span className="text-[0.4em]">®</span>
           </h1>
 
-          <button className="flex items-center gap-1 bg-[#f6f2ea] text-black py-2 rounded-full shadow-md absolute h-13 w-[8rem] right-[2rem] top-6">
-            <span className="text-sm font-medium px-5 pr-0.5">Reserve</span>
-            <span className="w-11 h-11 flex items-center justify-center rounded-full bg-gray-800">
-              <i className="ri-arrow-right-up-long-line text-white text-lg"></i>
+          <button className="flex items-center gap-1 bg-[#f6f2ea] text-black py-2 rounded-full shadow-md absolute h-11 sm:h-13 w-[7rem] sm:w-[8rem] right-6 sm:right-[2rem] top-6 sm:top-6">
+            <span className="text-xs sm:text-sm font-medium px-4 sm:px-5 pr-0.5">
+              Reserve
+            </span>
+            <span className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-gray-800">
+              <i className="ri-arrow-right-up-long-line text-white text-base sm:text-lg"></i>
             </span>
           </button>
 
-          <h2 className="absolute bottom-9 left-5 text-lg text-[2.4rem] leading-10">
-            Closer to
-            <br />
-            Nature—
-            <br />
-            Closer to Yourself
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between w-full mb-16 sm:mb-9 lg:mb-12">
+            <h2 className="text-[7vw] sm:text-[2.4rem] leading-tight sm:leading-10 mb-6 sm:mb-0">
+              Closer to
+              <br />
+              Nature—
+              <br />
+              Closer to Yourself
+            </h2>
 
-          <p className="absolute bottom-16 right-5 text-sm font-semibold max-w-xs text-left">
-            Spend unforgettable and remarkable time <br />
-            in the Californian desert with—Capsules.
-          </p>
+            <p className="text-xs sm:text-sm font-semibold max-w-[15rem] sm:max-w-xs text-left mb-12 sm:mb-0">
+              Spend unforgettable and remarkable time{" "}
+              <br className="hidden sm:block" />
+              in the Californian desert with—Capsules.
+            </p>
+          </div>
 
-          <button className="flex items-center gap-2.5 bg-[#f6f2ea] text-black z-[999] py-2 rounded-full shadow-md fixed h-13 w-[8rem] bottom-9 left-[49%]">
-            <span className="text-sm font-medium px-6 pr-2">Menu</span>
-            <span className="w-11 h-11 flex items-center justify-center rounded-full bg-gray-800">
+          <button className="flex items-center gap-2.5 bg-[#f6f2ea] text-black z-[999] py-2 rounded-full shadow-md fixed h-11 sm:h-13 w-[7rem] sm:w-[8rem] bottom-6 sm:bottom-9 left-1/2 -translate-x-1/2">
+            <span className="text-xs sm:text-sm font-medium px-5 sm:px-6 pr-2">
+              Menu
+            </span>
+            <span className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-gray-800">
               <i className="ri-menu-fill text-white"></i>
             </span>
           </button>
         </div>
       </section>
 
-      <div className="relative h-screen w-screen overflow-hidden">
-        <h1 className="text-[4.5rem] w-[89%] left-12  top-50 absolute z-10 text-amber-50 leading-[5rem]">
+      <div className="relative h-screen w-full overflow-hidden px-6 sm:px-12 flex items-center">
+        <h1 className="text-[8vw] sm:text-[4.5rem] w-full sm:w-[89%] relative z-10 text-amber-50 leading-[1.1] sm:leading-[5rem]">
           Welcome to a world of wild California desert with Capsules®, where you
-          will
-          <br /> discover exquisite nature observing it
-          <br /> from capsule houses, nestled in the
-          <br /> one of the most breathtaking
-          <br /> destinations in the United States.
+          will discover exquisite nature observing it from capsule houses,
+          nestled in the one of the most breathtaking destinations in the United
+          States.
         </h1>
 
-       
         <div
           ref={overlayRef}
           className="absolute inset-0 bg-[rgb(20,20,20,0.95)] z-20 pointer-events-none"
           style={{
-            clipPath: "inset(0% 0% 0% 0%)", 
+            clipPath: "inset(0% 0% 0% 0%)",
           }}
         />
       </div>
 
-      <div className=" h-[25rem] mt-3  w-screen">
-        <div className="img flex w-[45%] flex-row mt-[7rem] ml-7 ">
+      <div className="min-h-[25rem] mt-3 w-full px-6 sm:px-12 flex flex-col md:flex-row items-center md:items-start gap-12 sm:gap-20">
+        <div className="img flex w-full md:w-[50%] flex-row gap-4">
           <img
             src={img1}
             alt=""
-            className="rounded-[40rem] object-cover object-center w-[40%] h-[30%] "
+            className="rounded-3xl sm:rounded-full object-cover object-center w-1/2 aspect-square sm:aspect-[4/5]"
           />
           <img
             src={img2}
             alt=""
-            className="rounded-[40rem] w-[40%] h-[30%] object-cover object-center"
+            className="rounded-3xl sm:rounded-full w-1/2 aspect-square sm:aspect-[4/5] object-cover object-center"
           />
         </div>
-        <p className="flex text-[rgb(159, 156, 156)] relative left-[50%] top-[-11rem] text-[2.5rem] leading-11  ">
-          A place where you can be with
-          <br /> yourself and your loved ones.
-          <br /> A place where you can experience
-          <br /> unforgettable desert things.
-        </p>
-        <p className="relative mt-[0rem] text-white ml-[2rem]">
-          Discover available Capsules®
-        </p>
+        <div className="flex flex-col gap-6 md:mt-12">
+          <p className="text-[rgb(159,156,156)] text-[5vw] sm:text-[2.5rem] leading-tight sm:leading-11">
+            A place where you can be with
+            <br /> yourself and your loved ones.
+            <br /> A place where you can experience
+            <br /> unforgettable desert things.
+          </p>
+          <p className="text-white">Discover available Capsules®</p>
+        </div>
       </div>
 
-      <div className="relative flex flex-col h-screen w-screen mt-[2rem] overflow-hidden">
+      <div className="relative flex flex-col min-h-screen w-full mt-[2rem] overflow-hidden px-6 sm:px-12">
         <div
           ref={amberOverlayRef}
           className="absolute inset-0 bg-[rgb(20,20,20,0.95)] z-30 pointer-events-none"
@@ -226,42 +225,48 @@ function Hero() {
         />
         <h1
           ref={chooseTextRef}
-          className="text-[13rem]  text-amber-50 ml-[2rem] leading-[11rem] tracking-tight"
+          className="text-[15vw] sm:text-[13rem] text-amber-50 leading-[0.9] tracking-tight mb-12 sm:mb-20"
         >
-          Choose the one<br />  you like best
+          Choose the one
+          <br /> you like best
         </h1>
-        <p className="w-[40%]  text-[2.4rem] relative mt-[5rem] ml-[3rem] leading-11  ">
-          You can choose one of three
-          <br /> premium capsule houses in our
-          <br /> offer. Each of our capsules provides
-          <br /> the highest quality and meets the standards adjusted to your
-          needs.
-          <br /> Choose the one you like.
-        </p>
-        <p className=" w-[18%] text-white relative ml-[54%] mt-[-17rem]">
-          All Capsules® houses—has built based on the same rules:
-        </p>
-        <div className="tobt relative ml-[54%] mt-[2rem] flex gap-2">
-          <button className="border-2 border-gray-400 px-6 py-4 rounded-4xl text-3xl">
-            Sustainable
-          </button>
-          <button className="border-2 border-white text-white px-6 py-4 rounded-4xl text-3xl">
-            Nature—Care
-          </button>
-          <button className="border-2 border-gray-400 px-6 py-4 rounded-4xl text-3xl">
-            Smart
-          </button>
-        </div>
-        <div className="bottombt relative ml-[54%] mt-[1rem] flex gap-2">
-          <button className="border-2 border-white text-white px-6 py-4 rounded-4xl text-3xl">
-            Privacy
-          </button>
-          <button className="border-2 border-gray-400  px-6 py-4 rounded-4xl text-3xl">
-            Spacious
-          </button>
-          <button className="border-2 border-white text-white px-6 py-4 rounded-4xl text-3xl">
-            Glassed—In
-          </button>
+
+        <div className="flex flex-col lg:flex-row justify-between gap-12">
+          <p className="w-full lg:w-[45%] text-[5vw] sm:text-[2.4rem] leading-tight sm:leading-11">
+            You can choose one of three
+            <br className="hidden sm:block" /> premium capsule houses in our
+            <br className="hidden sm:block" /> offer. Each of our capsules
+            provides
+            <br className="hidden sm:block" /> the highest quality and meets the
+            standards adjusted to your needs.
+            <br className="hidden sm:block" /> Choose the one you like.
+          </p>
+
+          <div className="w-full lg:w-1/2 flex flex-col gap-6">
+            <p className="text-white text-lg">
+              All Capsules® houses—has built based on the same rules:
+            </p>
+            <div className="flex flex-wrap gap-2 sm:gap-3">
+              <button className="border-2 border-gray-400 px-4 sm:px-6 py-2 sm:py-4 rounded-full text-lg sm:text-2xl hover:bg-white hover:text-black transition-colors">
+                Sustainable
+              </button>
+              <button className="border-2 border-white text-white px-4 sm:px-6 py-2 sm:py-4 rounded-full text-lg sm:text-2xl hover:bg-white hover:text-black transition-colors">
+                Nature—Care
+              </button>
+              <button className="border-2 border-gray-400 px-4 sm:px-6 py-2 sm:py-4 rounded-full text-lg sm:text-2xl hover:bg-white hover:text-black transition-colors">
+                Smart
+              </button>
+              <button className="border-2 border-white text-white px-4 sm:px-6 py-2 sm:py-4 rounded-full text-lg sm:text-2xl hover:bg-white hover:text-black transition-colors">
+                Privacy
+              </button>
+              <button className="border-2 border-gray-400 px-4 sm:px-6 py-2 sm:py-4 rounded-full text-lg sm:text-2xl hover:bg-white hover:text-black transition-colors">
+                Spacious
+              </button>
+              <button className="border-2 border-white text-white px-4 sm:px-6 py-2 sm:py-4 rounded-full text-lg sm:text-2xl hover:bg-white hover:text-black transition-colors">
+                Glassed—In
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

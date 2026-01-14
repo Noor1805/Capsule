@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Noor1805.github.io/Capsule",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
